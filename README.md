@@ -20,6 +20,22 @@ The project uses OpenAI's API to generate structured insights and categorizes da
 - **Prompt-Generated Insights**: Uses prompt engineering to request detailed linguistic, cultural, and risk-related data.
 - **Interactive Visualization**: Displays data on a geographic map with filtering options in Tableau Public.
 
+## Agentic Architecture
+
+This project is implemented as a lightweight multi agent system:
+
+- Planner Agent  \
+  Scans the existing dataset to identify gaps by region and risk level, then generates prioritized research tasks.
+
+- Research Agent  \
+  Uses OpenAI models with strict JSON schemas to generate structured linguistic and cultural records for each task.
+
+- Validator Agent  \
+  Enforces schema and sanity checks (required fields, coordinate ranges) and only commits valid entries to the main CSV datastore.
+
+The agents run in a loop in `main.py`, which behaves like a simple autonomous workflow engine:  \
+plan tasks, research, validate, then update the dataset that feeds the Tableau dashboard.
+
 ## Table of Contents
 
 - [Installation](#installation)
